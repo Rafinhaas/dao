@@ -26,15 +26,13 @@ public class App {
         Pessoa jose = new Pessoa("Jose", "Silva", 22);
 
 //        Dao dao = new PessoaDaoArrayList();
-        dao.adicionar(joao);
-        dao.remover(joao);
+//        dao.adicionar(joao);
 //        dao.adicionar(jose);
 //        dao.adicionar(pedro);
 //        
 //        dao.listarTudo();
 //        
 //        System.out.println("\n\n -----Vamos remover");
-//        dao.remover(jose);
-//        dao.listarTudo();
+        dao.listarTudo();
     }
 }

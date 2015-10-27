@@ -36,7 +36,6 @@ public class PessoaDaoDerby implements Dao{
         String instrucao = "INSERT INTO PESSOA (NOME, SOBRENOME, IDADE) VALUES(" + "'" + p.getNome() + "', "
                                                                                  + "'" + p.getSobrenome() + "', " 
                                                                                  + p.getIdade() + ")";
-        System.out.println(instrucao);
         try {
             stmt.executeUpdate(instrucao);
         } catch (SQLException se) {
@@ -47,7 +46,6 @@ public class PessoaDaoDerby implements Dao{
     @Override
     public void remover(Pessoa p) {
         String instrucao = "DELETE FROM PESSOA WHERE NOME = '" + p.getNome() + "'";
-        System.out.println(instrucao);
         try {
             stmt.executeUpdate(instrucao);
         } catch (SQLException se) {
@@ -57,7 +55,19 @@ public class PessoaDaoDerby implements Dao{
 
     @Override
     public void listarTudo() {
-
+        String instrucao = "SELECT * FROM PESSOA";
+        try {
+            ResultSet rs = stmt.executeQuery(instrucao);
+            
+            while(rs.next()){
+                System.out.println("Nome: "+ rs.getString("NOME") +
+                                    "\nSobrenome: "+ rs.getString("SOBRENOME") +
+                                    "\nIdade: "+ rs.getInt("IDADE")+"\n---------------------------------------------\n");
+            }
+            
+        } catch (SQLException se) {
+            System.out.println("Mensagem: " + se.getMessage());
+        }
     }
     
 }
