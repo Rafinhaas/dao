@@ -18,7 +18,7 @@ public class PessoaDaoDerby implements Dao{
 
     //Quando construir um objeto dessa classe, vai conectar no banco
     public PessoaDaoDerby() {
-        String username = "Rafael";
+        String username = "master";
         String password = "123";
         String url = "jdbc:derby://localhost:1527/MeuBancoDeDados";
         //depois disso, posso mandar conectar
@@ -33,12 +33,26 @@ public class PessoaDaoDerby implements Dao{
 
     @Override
     public void adicionar(Pessoa p) {
-        
+        String instrucao = "INSERT INTO PESSOA (NOME, SOBRENOME, IDADE) VALUES(" + "'" + p.getNome() + "', "
+                                                                                 + "'" + p.getSobrenome() + "', " 
+                                                                                 + p.getIdade() + ")";
+        System.out.println(instrucao);
+        try {
+            stmt.executeUpdate(instrucao);
+        } catch (SQLException se) {
+            System.out.println("Mensagem: " + se.getMessage());
+        }
     }
 
     @Override
     public void remover(Pessoa p) {
-
+        String instrucao = "DELETE FROM PESSOA WHERE NOME = '" + p.getNome() + "'";
+        System.out.println(instrucao);
+        try {
+            stmt.executeUpdate(instrucao);
+        } catch (SQLException se) {
+            System.out.println("Mensagem: " + se.getMessage());
+        }
     }
 
     @Override
